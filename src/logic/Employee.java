@@ -88,21 +88,10 @@ public class Employee implements Comparable, PersonnelUnit {
         this.dob = dob;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "surname='" + surname + '\'' +
-                ", name='" + name + '\'' +
-                ", gender='" + gender + '\'' +
-                ", maritalStatus='" + maritalStatus + '\'' +
-                ", salary=" + salary +
-                ", dob=" + dob +
-                '}';
-    }
-
     public int compareTo(Object obj) {
-        Collator c = Collator.getInstance(new Locale("ru"));
-        c.setStrength(Collator.PRIMARY);
-        return c.compare(this.toString(), obj.toString());
+        Collator collator = Collator.getInstance(new Locale("ru"));
+        collator.setStrength(Collator.PRIMARY);
+        Employee tmp = (Employee)obj;
+        return collator.compare(this.getSurname(), tmp.getSurname());
     }
 }
