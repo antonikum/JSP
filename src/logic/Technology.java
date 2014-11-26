@@ -6,7 +6,7 @@ import java.sql.SQLException;
 /**
  * Entity technology
  */
-public class Technology implements PersonnelUnit {
+public class Technology implements Comparable, PersonnelUnit {
     private int id;
     private String name;
     private String description;
@@ -53,5 +53,12 @@ public class Technology implements PersonnelUnit {
 
     public void setRate(int rate) {
         this.rate = rate;
+    }
+
+    public int compareTo(Object obj) {
+        Collator collator = Collator.getInstance(new Locale("ru"));
+        collator.setStrength(Collator.PRIMARY);
+        Technology tmp = (Technology)obj;
+        return collator.compare(this.getName(), tmp.getName());
     }
 }
